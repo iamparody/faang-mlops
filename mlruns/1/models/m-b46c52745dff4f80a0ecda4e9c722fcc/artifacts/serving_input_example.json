@@ -1,0 +1,12 @@
+{
+  "dataframe_split": {
+    "columns": [
+      "Prev_Close"
+    ],
+    "data": [
+      [
+        1.1526789665222168
+      ]
+    ]
+  }
+}

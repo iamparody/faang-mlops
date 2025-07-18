@@ -1,0 +1,10 @@
+experiment_name: faang-forecasting
+tracking_uri: http://mlflow:5000
+data_path: /home/src/data/faang_clean.csv
+target_column: Close
+features:
+  - Prev_Close
+test_size: 0.2
+rmse_threshold: 7
+model:
+  type: LinearRegression

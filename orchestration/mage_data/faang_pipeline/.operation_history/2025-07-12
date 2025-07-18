@@ -1,0 +1,2 @@
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "train_faang_model"}, "timestamp": 1752327119, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "train_faang"}, "timestamp": 1752327419, "user": null}

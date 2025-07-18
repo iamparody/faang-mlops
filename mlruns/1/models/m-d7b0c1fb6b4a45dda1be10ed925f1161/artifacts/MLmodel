@@ -1,0 +1,33 @@
+artifact_path: /mlflow/mlruns/1/models/m-d7b0c1fb6b4a45dda1be10ed925f1161/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.18
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.0
+is_signature_from_type_hint: false
+mlflow_version: 3.1.1
+model_id: m-d7b0c1fb6b4a45dda1be10ed925f1161
+model_size_bytes: 728
+model_uuid: m-d7b0c1fb6b4a45dda1be10ed925f1161
+prompts: null
+run_id: 27de67c196184de0a627bd8c3c7388ba
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "Prev_Close", "required": true}]'
+  outputs: '[{"type": "double", "name": "Close", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-07-16 10:32:48.710654'

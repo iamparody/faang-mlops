@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+.mlruns/
+reports/
+volumes/
+*.log
+.idea/
+.vscode/

@@ -1,0 +1,91 @@
+
+
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: mlflow-tracking
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlflow/mlruns
+      - ./mlflow.db:/mlflow/mlflow.db
+    command: >
+      mlflow server 
+      --backend-store-uri sqlite:///mlflow.db 
+      --default-artifact-root /mlflow/mlruns 
+      --host 0.0.0.0
+    environment:
+      - MLFLOW_TRACKING_URI=http://0.0.0.0:5000
+
+  mage:
+    build:
+      context: ./orchestration
+      dockerfile: ../docker/mage/Dockerfile
+    container_name: mage-orchestrator
+    ports:
+      - "6789:6789"
+    volumes:
+      - ./orchestration:/home/src/
+      - ./mlruns:/mlflow/mlruns
+      - ./mlflow.db:/mlflow/mlflow.db
+    working_dir: /home/src/
+    command: mage start faang_pipeline
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: docker/fastapi/Dockerfile
+    container_name: fastapi-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ./mlruns:/mlflow/mlruns
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    working_dir: /app/fastapi_app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+
+  monitoring:
+    build:
+      context: ./monitoring
+      dockerfile: Dockerfile
+    container_name: monitoring-service
+    volumes:
+      - ./monitoring:/app
+      - ./mlruns:/mlflow/mlruns
+    working_dir: /app
+    depends_on:
+      - fastapi
+    restart: on-failure
+
+  postgres:
+    image: postgres:14
+    container_name: monitoring-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: faang_monitoring
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: faang-grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+
+
+volumes:
+  pg_data: {}
+  grafana_data: {}
