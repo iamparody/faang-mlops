@@ -1,5 +1,7 @@
 # FAANG Forecasting MLOps Project
 <img width="600" height="306" alt="mlops-cycle" src="https://github.com/user-attachments/assets/a54a8e1f-98dc-4937-8071-ba95fb0b76aa" />
+
+
 ## Project Overview
 
 A full-cycle MLOps project for FAANG stock price forecasting. Built to showcase core MLOps concepts like reproducibility, monitoring, CI/CD, and cloud readiness — all within a containerized setup. The project runs locally using Docker Compose and can be extended to cloud setups.
