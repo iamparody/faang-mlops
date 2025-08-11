@@ -7,35 +7,49 @@
 A full-cycle MLOps project for FAANG stock price forecasting. Built to showcase core MLOps concepts like reproducibility, monitoring, CI/CD, and cloud readiness — all within a containerized setup. The project runs locally using Docker Compose and can be extended to cloud setups.
 
 ---
-# Problem Statement
-Financial market data, especially stock prices from high-growth tech companies (FAANG), is inherently noisy, non-stationary, and influenced by a variety of economic, technological, and social factors.
-Accurately forecasting such time series data is a challenging task, yet it is critical for informed decision-making in areas such as algorithmic trading, risk management, and portfolio optimization.
+## 📌 Problem Statement
+Stock prices for high-growth tech companies (FAANG) are volatile, influenced by global economic trends, sector-specific developments, and investor sentiment.
+Accurately forecasting such prices is challenging but crucial for applications like:
 
-In this project, I aimed to build an end-to-end ARIMA/SARIMA forecasting pipeline for the FAANG dataset, focusing on:
+### Algorithmic trading strategies
+#### Portfolio risk management
+#### Investment decision-making
 
-Understanding the underlying time series behavior (stationarity, seasonality, autocorrelation patterns).
+This project tackles the challenge of building a fully reproducible, deployable, and monitored forecasting pipeline that predicts FAANG stock closing prices using Linear Regression.
+Our goal was not just to build a model, but to design an MLOps-ready system that could be trained, deployed, and monitored in both local and cloud environments.
 
-Selecting optimal model parameters through statistical tests (ADF, ACF, PACF) and iterative experimentation.
+## 🎯 Project Goals
+Develop a predictive model to forecast FAANG closing prices.
+Implement MLOps best practices: reproducibility, CI/CD, monitoring, containerization.
+Enable seamless deployment through Docker Compose with potential cloud migration.
 
-Evaluating forecast performance with metrics such as MSE, RMSE, and Ljung–Box test for residual autocorrelation.
+## 🛠 Solution Approach
+1. Data Exploration & Preparation
+Collected historical FAANG stock price data.
 
-Reproducibility and deployment readiness, so that the model can be integrated into larger MLOps workflows.
+Cleaned missing values, handled outliers, and engineered features (lag variables, rolling averages).
 
-I approached the problem by systematically moving through:
+2. Model Selection & Training
+Chose Linear Regression for its interpretability and quick iteration.
 
-Data Exploration & Cleaning – Understanding missing values, trends, and outliers in FAANG closing price data.
+Used Scikit-Learn for training.
 
-Stationarity Checks & Transformation – Applying differencing and log transformations to stabilize variance and mean.
+Logged experiments and metrics in MLflow.
 
-Parameter Selection – Using ACF/PACF plots to inform (p, d, q) choices.
+3. Deployment
+Built a FastAPI service for real-time predictions.
 
-Model Training & Residual Diagnostics – Ensuring the model assumptions were met and refining parameters when residual patterns were detected.
+Containerized each service (model, monitoring, API) with Docker.
 
-Evaluation & Interpretation – Comparing model predictions against actual values and assessing statistical robustness.
+4. Monitoring
+Used Evidently to detect data drift and monitor prediction quality.
 
-Future Work – Scaling the pipeline, integrating with MLflow for tracking, and containerizing for deployment.
+Stored monitoring metrics in PostgreSQL and visualized them in Grafana.
 
-Through this structured approach, I addressed the problem of building a reliable, statistically sound forecasting pipeline that balances predictive accuracy with interpretability — a key requirement for practical financial forecasting systems.
+5. CI/CD & Automation
+Automated builds and tests with GitHub Actions.
+
+Used Makefile for reproducible local workflows.
 
 ## 📁 Project Structure
 
@@ -66,6 +80,11 @@ faang-mlops/
 * **Pandas & Scikit-Learn**: Data manipulation & ML modeling
 
 ---
+## 📊 Results
+Model: Linear Regression
+
+Metrics: 6.7
+Delivered an MLOps-ready stack that is fully containerized, version-controlled, and monitored.
 
 ## 🔬 1. Experimentation
 
