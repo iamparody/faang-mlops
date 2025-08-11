@@ -7,7 +7,35 @@
 A full-cycle MLOps project for FAANG stock price forecasting. Built to showcase core MLOps concepts like reproducibility, monitoring, CI/CD, and cloud readiness — all within a containerized setup. The project runs locally using Docker Compose and can be extended to cloud setups.
 
 ---
+# Problem Statement
+Financial market data, especially stock prices from high-growth tech companies (FAANG), is inherently noisy, non-stationary, and influenced by a variety of economic, technological, and social factors.
+Accurately forecasting such time series data is a challenging task, yet it is critical for informed decision-making in areas such as algorithmic trading, risk management, and portfolio optimization.
 
+In this project, I aimed to build an end-to-end ARIMA/SARIMA forecasting pipeline for the FAANG dataset, focusing on:
+
+Understanding the underlying time series behavior (stationarity, seasonality, autocorrelation patterns).
+
+Selecting optimal model parameters through statistical tests (ADF, ACF, PACF) and iterative experimentation.
+
+Evaluating forecast performance with metrics such as MSE, RMSE, and Ljung–Box test for residual autocorrelation.
+
+Reproducibility and deployment readiness, so that the model can be integrated into larger MLOps workflows.
+
+I approached the problem by systematically moving through:
+
+Data Exploration & Cleaning – Understanding missing values, trends, and outliers in FAANG closing price data.
+
+Stationarity Checks & Transformation – Applying differencing and log transformations to stabilize variance and mean.
+
+Parameter Selection – Using ACF/PACF plots to inform (p, d, q) choices.
+
+Model Training & Residual Diagnostics – Ensuring the model assumptions were met and refining parameters when residual patterns were detected.
+
+Evaluation & Interpretation – Comparing model predictions against actual values and assessing statistical robustness.
+
+Future Work – Scaling the pipeline, integrating with MLflow for tracking, and containerizing for deployment.
+
+Through this structured approach, I addressed the problem of building a reliable, statistically sound forecasting pipeline that balances predictive accuracy with interpretability — a key requirement for practical financial forecasting systems.
 
 ## 📁 Project Structure
 
@@ -166,7 +194,7 @@ make run-fastapi
 **Kiriinya Antony**
 MLOps | Data Engineering | Forecasting Systems
 
-[LinkedIn](https://www.linkedin.com/in/iamparody) | [GitHub](https://github.com/iamparody) | Nairobi, Kenya
+[LinkedIn](https://www.linkedin.com/in/antony-kiriinya-a45769211) | [GitHub](https://github.com/iamparody) | Nairobi, Kenya
 
 ---
 
